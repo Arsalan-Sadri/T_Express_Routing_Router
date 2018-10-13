@@ -1,15 +1,9 @@
 const express = require("express");
-const bodyParser = require("body-parser");
+const router = require("./routes");
 
 const app = express();
+app.use(router);
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
-require("./routes")(app);
-
-const PORT = 8080;
-const host = "localhost";
+const PORT = process.env.PORT || 8080;
+const host = "localhost"
 app.listen(PORT, host, () => console.log("App running on http://" + host + ":" + PORT));
