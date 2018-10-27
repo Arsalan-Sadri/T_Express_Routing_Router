@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const app = express();
 
 router.route('/users/:user_id')
     .all(function (req, res, next) {
@@ -24,4 +25,10 @@ router.route('/users/:user_id')
         next(new Error('not implemented'));
     });
 
-module.exports = router;
+
+app.use(router);
+
+const PORT = process.env.PORT || 8080;
+const host = "localhost";
+app.listen(PORT, host, () =>
+    console.log("App running on http://" + host + ":" + PORT));
