@@ -5,10 +5,11 @@ router.route('/users/:user_id')
     .all(function (req, res, next) {
         // runs for all HTTP verbs first
         // think of it as route specific middleware!
+        console.log(".all called!");
         next();
     })
     .get(function (req, res, next) {
-        res.json(req.user);
+        res.send(req.params.user_id);
     })
     .put(function (req, res, next) {
         // just an example of maybe updating the user
@@ -17,7 +18,7 @@ router.route('/users/:user_id')
         res.json(req.user);
     })
     .post(function (req, res, next) {
-        next(new Error('not implemented'));
+        res.send("No implemented!");
     })
     .delete(function (req, res, next) {
         next(new Error('not implemented'));
